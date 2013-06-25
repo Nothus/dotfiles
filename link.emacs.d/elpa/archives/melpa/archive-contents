@@ -478,7 +478,7 @@
 		 [(20121210 10)
 		  nil "A mode for SystemTap [github]" single])
  (syslog-mode .
-	      [(20130623 137)
+	      [(20130624 1904)
 	       ((hide-lines
 		 (20130623)))
 	       "Major-mode for viewing log files [github]" single])
@@ -707,7 +707,7 @@
 	     [(20130218 1829)
 	      nil "slime extensions for ritz [github]" single])
  (slime .
-	[(20130526 820)
+	[(20130526 824)
 	 nil "Superior Lisp Interaction Mode for Emacs [github]" tar])
  (slim-mode .
 	    [(20130614 2240)
@@ -1127,7 +1127,7 @@
 	 [(20130329 2035)
 	  nil "Popup Window Manager. [github]" single])
  (popup-switcher .
-		 [(20130605 2305)
+		 [(20130624 1927)
 		  ((popup
 		    (0 5 0)))
 		  "switch to other buffers and files via popup. [github]" single])
@@ -1479,7 +1479,7 @@
 	   (2 0 0)))
 	 "Client for Clojure nREPL [github]" single])
  (notmuch .
-	  [(20130613 7)
+	  [(20130624 2257)
 	   nil "No description available. [git]" tar])
  (nose .
        [(20110804 819)
@@ -1593,8 +1593,8 @@
 		[(20120503 1929)
 		 nil "No description available. [github]" single])
  (moe-theme .
-	    [(20130624 2234)
-	     nil "A colorful eye-candy theme. Moe, moe, chu! [github]" tar])
+	    [(20130625 1427)
+	     nil "A colorful eye-candy theme. Moe, moe, kyun! [github]" tar])
  (modeline-posn .
 		[(20130420 559)
 		 nil "Set up `mode-line-position'. [wiki]" single])
@@ -1739,7 +1739,7 @@
 			       [(20130518 0)
 				nil "Advice for magit-log-edit-commit [github]" single])
  (magit .
-	[(20130623 1835)
+	[(20130624 2315)
 	 ((cl-lib
 	   (0 2)))
 	 "Control Git from Emacs. [github]" tar])
@@ -1973,7 +1973,7 @@
 	 (0)))
        "An emacs interface to webkit and mozilla debuggers [github]" tar])
  (js3-mode .
-	   [(20130418 1051)
+	   [(20130625 1059)
 	    nil "No description available. [github]" tar])
  (js2-refactor .
 	       [(20130622 1018)
@@ -2416,7 +2416,7 @@
 	   (1 2)))
 	 "Emacs client for hastebin (http://hastebin.com/about.md) [github]" single])
  (haskell-mode .
-	       [(20130624 1229)
+	       [(20130625 1405)
 		nil "A Haskell editing mode [github]" tar])
  (hardhat .
 	  [(20130522 1243)
@@ -2451,7 +2451,7 @@
 	       (0 3 0)))
 	     "Guide the following key bindings automatically and dynamically [github]" single])
  (gruber-darker-theme .
-		      [(20130624 1349)
+		      [(20130625 2007)
 		       nil "Gruber Darker color theme for Emacs 24. [github]" single])
  (groovy-mode .
 	      [(20130506 1025)
@@ -2990,6 +2990,11 @@
  (espresso-theme .
 		 [(20130301 1148)
 		  nil "Espresso Tutti Colori port for Emacs [github]" single])
+ (esh-help .
+	   [(20130624 2243)
+	    ((dash
+	      (20130617 739)))
+	    "Add some help functions and support for Eshell [github]" single])
  (esh-buf-stack .
 		[(20130620 2354)
 		 nil "Add a buffer stack feature to Eshell [github]" single])
@@ -3008,7 +3013,7 @@
 	 [(20130604 1458)
 	  nil "Erlang major mode [github]" tar])
  (ergoemacs-mode .
-		 [(20130623 2208)
+		 [(20130624 1133)
 		  ((org-cua-dwim
 		    (0 5)))
 		  "A minor mode, a keybinding set based on ergonomics. [git]" tar])
@@ -3059,7 +3064,7 @@
 	  [(20130407 1548)
 	   nil "A networked notification system for emacs [github]" tar])
  (enh-ruby-mode .
-		[(20130531 1516)
+		[(20130624 1619)
 		 nil "Major mode for editing Ruby files [github]" tar])
  (enclose .
 	  [(20121008 1814)
@@ -3429,7 +3434,7 @@
 	     [(20100517 820)
 	      nil "Kill text between delimiters. [github]" single])
  (deft .
-   [(20130624 902)
+   [(20130625 1128)
     nil "quickly browse, filter, and edit plain text notes [git]" single])
  (deferred .
    [(20130523 1007)
@@ -3442,6 +3447,15 @@
       ((kv
 	(0 0 11)))
       "A database for EmacsLisp [github]" single])
+ (datomic-snippets .
+		   [(20130625 913)
+		    ((s
+		      (1 4 0))
+		     (dash
+		      (1 2 0))
+		     (yasnippet
+		      (0 6 1)))
+		    "Yasnippets for Datomic [github]" tar])
  (dash-at-point .
 		[(20130417 1034)
 		 nil "Search the word at point with Dash [github]" single])
