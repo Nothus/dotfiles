@@ -1,0 +1,14 @@
+tmux has-session -t platform
+if [ $? != 0 ]
+then
+    tmux new-session -s platform -n Editor -d
+    tmux send-keys -t platform 'cd ~/work/redrobot/platform' C-m
+    tmux split-window -h -t platform
+    tmux select-layout -t platform main-vertical
+    tmux send-keys -t platform:1.2 'cd ~/work/redrobot/platform' C-m
+
+    tmux new-window -n Servers
+
+    tmux select-window -t platform:1
+fi
+tmux attach -t platform

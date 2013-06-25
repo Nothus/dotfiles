@@ -1,0 +1,3 @@
+tmux set status-justify centre
+tmux set status-right ''
+tmux set status-left ''
