@@ -31,11 +31,25 @@
 (powerline-default-theme)
 
 ;; Ace Jump
-(require 'ace-jump-mode)
+(autoload
+  'ace-jump-mode
+  "ace-jump-mode"
+  "Emacs quick move minor mode"
+  t)
 ;;(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 (define-key global-map (kbd "C-c jj") 'ace-jump-word-mode)
 (define-key global-map (kbd "C-c jk") 'ace-jump-char-mode)
 (define-key global-map (kbd "C-c jl") 'ace-jump-line-mode)
+(setq ace-jump-mode-scope 'global)
+
+(autoload
+  'ace-jump-mode-pop-mark
+  "ace-jump-mode"
+  "Ace jump back :-)"
+  t)
+(eval-after-load "ace-jump-mode"
+  '(ace-jump-mode-enable-mark-sync))
+(define-key global-map (kbd "C-c jb") 'ace-jump-mode-pop-mark)
 
 ;; helm
 (require 'helm-config)
@@ -85,6 +99,9 @@
 ;; make ctags stop asking to reload TAGS file
 (setq tags-revert-without-query 1)
 
+;; buffer-menu instead of list-buffers
+(global-set-key (kbd "C-x C-b") 'buffer-menu)
+
 ;; Magit
 (require 'magit)
 
@@ -95,6 +112,16 @@
 (autoload 'ruby-mode "ruby-mode")
 (add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
+
+;; Inf Ruby
+;;(autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
+;;(autoload 'inf-ruby-setup-keybindings "inf-ruby" "" t)
+;;(eval-after-load 'ruby-mode
+;;  '(add-hook 'ruby-mode-hook 'inf-ruby-setup-keybindings))
+
+;; Robe
+;;(require 'robe)
+;;(add-hook 'ruby-mode-hook 'robe-mode)
 
 ;; Rinari Mode (Rails)
 ;;(require 'rinari)
@@ -114,6 +141,11 @@
 ;;(global-set-key "\C-ctf" 'ruby-test-run)
 ;;(global-set-key "\C-cts" 'ruby-test-run-at-point)
 ;;(global-set-key "\C-ctt" 'ruby-test-toggle-implementation-and-specification)
+
+;; Evernote
+;; (require 'evernote-mode)
+;; (setq evernote-username "magnusnothus") ; optional: you can use this username as default.
+;; (setq evernote-enml-formatter-command '("w3m" "-dump" "-I" "UTF8" "-O" "UTF8")) ; option
 
 
 ;; ruby-end
@@ -168,11 +200,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ecb-options-version "2.40")
- ;; '(rspec-key-command-prefix "t")
- '(rspec-spec-command "rspec")
+ '(rspec-spec-command "rspec --colour -p")
  '(rspec-use-bundler-when-possible t)
  '(rspec-use-opts-file-when-available t)
- '(rspec-use-rake-flag nil)
+ '(rspec-use-rake-when-possible nil)
  '(rspec-use-rvm nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

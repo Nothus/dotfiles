@@ -1,1 +1,1 @@
-("/Users/mvazquez/.dotfiles/" "/Users/mvazquez/work/Jiff3/" "/usr/local/" "/Users/mvazquez/work/jiff3/")
+("~/work/Jiff3/" "~/.dotfiles/" "~/.rvm/gems/ruby-1.9.3-p392@jiff-jiff3/gems/paperclip-3.4.0/" "/Users/mvazquez/work/Jiff3/" "/Users/mvazquez/.dotfiles/" "/Users/mvazquez/work/atl/" "/Users/mvazquez/work/jiff3/" "/usr/local/")
