@@ -1,1 +1,1 @@
-("~/work/Jiff3/" "~/.dotfiles/" "~/.rvm/gems/ruby-1.9.3-p392@jiff-jiff3/gems/paperclip-3.4.0/" "/Users/mvazquez/work/Jiff3/" "/Users/mvazquez/.dotfiles/" "/Users/mvazquez/work/atl/" "/Users/mvazquez/work/jiff3/" "/usr/local/")
+("~/.dotfiles/" "~/work/Jiff3/" "~/work/curious/" "~/vagrant/dev_box/" "/usr/local/" "~/work/bromancer/" "~/.rvm/gems/ruby-1.9.3-p392@jiff-jiff3/gems/paperclip-3.4.0/" "/Users/mvazquez/work/Jiff3/" "/Users/mvazquez/.dotfiles/" "/Users/mvazquez/work/atl/" "/Users/mvazquez/work/jiff3/")

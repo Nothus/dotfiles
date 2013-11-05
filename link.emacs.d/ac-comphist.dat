@@ -1,0 +1,76 @@
+(((":snew" .
+   [1 0 0 0 0])
+  ("attr_accessible" .
+   [0 0 0 0 1 0 0 0 0 0 0 0 0 0 0])
+  ("connection_four:" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("con2" .
+   [1 0 0 0])
+  ("con4" .
+   [2 0 0 0])
+  ("con3" .
+   [2 0 0 0])
+  (":blah" .
+   [1 0 0 0 0])
+  (":connection_four" .
+   [2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  (":connection_three" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  (":connection_two" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("where" .
+   [1 0 0 0 0])
+  ("first_or_create" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("employee" .
+   [2 0 0 0 0 0 0 0])
+  ("challenges" .
+   [1 0 0 0 0 0 0 0 0 0])
+  ("challenge" .
+   [3 0 0 0 0 0 0 0 0])
+  (":include_challenge_metrics" .
+   [0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("options" .
+   [0 0 1 0 0 1 0])
+  ("serializer" .
+   [2 0 0 0 1 0 1 0 0 0])
+  ("current_user" .
+   [0 0 0 0 0 0 0 2 0 0 0 0])
+  ("chef" .
+   [2 0 0 0])
+  (":chef_solo" .
+   [1 0 0 0 0 0 0 0 0 0])
+  ("provision" .
+   [1 0 0 0 0 0 0 0 0])
+  ("config" .
+   [1 0 0 0 0 0])
+  ("cookbook" .
+   [1 0 0 1 3 0 0 0])
+  ("it" .
+   [1 0])
+  (":add_user_allowances" .
+   [0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  (":allowance" .
+   [1 0 0 0 0 0 0 0 0 0])
+  ("create" .
+   [1 0 0 0 0 0])
+  ("allowance" .
+   [1 0 1 0 0 0 0 0 0])
+  ("Allowance" .
+   [0 0 1 1 0 0 0 0 0])
+  ("describe" .
+   [0 0 0 0 0 0 0 2])
+  ("update_end_date" .
+   [0 0 1 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("slime" .
+   [0 0 0 1 1])
+  ("require" .
+   [1 0 0 0 0 0 0])
+  ("end_date" .
+   [0 0 0 0 1 0 0 0])
+  ("en" .
+   [1 0])
+  ("self" .
+   [0 0 0 1])
+  ("gem" .
+   [1 0 0])))

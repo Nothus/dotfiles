@@ -22,6 +22,21 @@
 ;; line numbers
 ;;(setq linum-format "%4d ")
 
+;; auto-complete
+(require 'auto-complete)
+(global-auto-complete-mode 1)
+
+;; slime
+(require 'slime)
+(slime-setup)
+
+;; slime autocomplete
+(require 'ac-slime)
+(add-hook 'slime-mode-hook 'set-up-slime-ac)
+(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'slime-repl-mode))
+
 ;; Crosshairs col-highlight/hl-line modes
 (require 'crosshairs)
 (global-set-key "\C-cc" 'flash-crosshairs)
@@ -53,14 +68,19 @@
 
 ;; helm
 (require 'helm-config)
-(global-set-key (kbd "C-c h") 'helm-mini)
+;;(global-set-key (kbd "C-c h") 'helm-mini)
+(global-set-key (kbd "C-c hb") 'helm-buffers-list)
+(global-set-key (kbd "C-c ho") 'helm-occur)
+(global-set-key (kbd "C-c hm") 'helm-mini)
 (helm-mode 1)
 (require 'helm-themes)
 
 ;; Projectile
 (require 'projectile)
 (projectile-global-mode)
-(global-set-key (kbd "C-c h") 'helm-projectile) ;; steals it from helm-mini
+(global-set-key (kbd "C-c hh") 'helm-projectile) ;; steals it from helm-mini
+(global-set-key (kbd "C-c pm") 'projectile-multi-occur)
+;;(global-set-key (kbd "C-c pg") 'projectile-grep)
 
 ;; Nav
 (require 'nav)
@@ -175,7 +195,6 @@
   (command-execute previous-mutiframe-window)
   (command-execute crosshairs-flash))
 
-
 ;;;;;;;;;;;;;;;;
 ;; My own loaders
 (add-hook 'ruby-mode-hook (lambda () (linum-mode 1)))
@@ -183,6 +202,7 @@
 ;;(add-hook 'ruby-mode-hook (lambda () (flyspell-prog-mode 1)))
 
 (setq auto-mode-alist (cons '("Gemfile$" . ruby-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("Berksfile$" . ruby-mode) auto-mode-alist))
 
 ;;;;;;;;;;;;;;;;
 ;; compile

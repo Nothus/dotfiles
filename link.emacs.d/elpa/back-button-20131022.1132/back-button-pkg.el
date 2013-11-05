@@ -1,0 +1,1 @@
+(define-package "back-button" "20131022.1132" "Visual navigation through mark rings [github]" (quote ((nav-flash "1.0.0") (smartrep "0.0.3") (ucs-utils "0.7.2") (persistent-soft "0.8.8") (pcache "0.2.3"))))
