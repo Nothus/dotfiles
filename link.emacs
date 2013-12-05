@@ -40,10 +40,22 @@
 ;; Crosshairs col-highlight/hl-line modes
 (require 'crosshairs)
 (global-set-key "\C-cc" 'flash-crosshairs)
+(key-chord-define-global "cc" 'flash-crosshairs)
 
 ;; Powerline
 (require 'powerline)
 (powerline-default-theme)
+
+;; Nav (emacs-nav)
+(require 'nav)
+(define-key global-map (kbd "C-c nn") 'nav-toggle)
+(key-chord-define-global "nn" 'nav-toggle)
+
+;; "Key Chords"
+(require 'key-chord)
+(key-chord-mode 1)
+(key-chord-define-global "uu" 'undo)
+(key-chord-define-global "ii" "\C-e\n\t")
 
 ;; Ace Jump
 (autoload
@@ -55,6 +67,9 @@
 (define-key global-map (kbd "C-c jj") 'ace-jump-word-mode)
 (define-key global-map (kbd "C-c jk") 'ace-jump-char-mode)
 (define-key global-map (kbd "C-c jl") 'ace-jump-line-mode)
+(key-chord-define-global "jj" 'ace-jump-word-mode)
+(key-chord-define-global "jk" 'ace-jump-char-mode)
+(key-chord-define-global "jl" 'ace-jump-line-mode)
 (setq ace-jump-mode-scope 'global)
 
 (autoload
@@ -70,8 +85,12 @@
 (require 'helm-config)
 ;;(global-set-key (kbd "C-c h") 'helm-mini)
 (global-set-key (kbd "C-c hb") 'helm-buffers-list)
+(key-chord-define-global "hb" 'helm-buffers-list)
 (global-set-key (kbd "C-c ho") 'helm-occur)
+;(key-chord-define-global "ho" 'helm-occur) ; common key combo
 (global-set-key (kbd "C-c hm") 'helm-mini)
+(global-set-key (kbd "C-c hc") 'helm-etags-select)
+(global-set-key (kbd "M-.") 'helm-etags-select)
 (helm-mode 1)
 (require 'helm-themes)
 
@@ -79,7 +98,9 @@
 (require 'projectile)
 (projectile-global-mode)
 (global-set-key (kbd "C-c hh") 'helm-projectile) ;; steals it from helm-mini
+(key-chord-define-global "hh" 'helm-projectile)
 (global-set-key (kbd "C-c pm") 'projectile-multi-occur)
+(key-chord-define-global "pm" 'projectile-multi-occur)
 ;;(global-set-key (kbd "C-c pg") 'projectile-grep)
 
 ;; Nav

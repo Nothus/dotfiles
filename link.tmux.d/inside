@@ -1,3 +1,5 @@
+#tmux set status-position top
+tmux set status-position bottom
 tmux set status-justify centre
 tmux set status-right '#S'
 tmux set status-left ''
