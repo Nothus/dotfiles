@@ -5,11 +5,18 @@
   (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
   )
+(add-to-list 'load-path "~/.emacs.d/packages/") ; downloaded packages
 
 ;;;;;;;;;
 ;; custom
 
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+
+;; "Key Chords"
+(require 'key-chord)
+(key-chord-mode 1)
+(key-chord-define-global "uu" 'undo)
+(key-chord-define-global "ii" "\C-e\n\t")
 
 ;; winner mode, layout history
 (when (fboundp 'winner-mode)
@@ -51,13 +58,8 @@
 (define-key global-map (kbd "C-c nn") 'nav-toggle)
 (key-chord-define-global "nn" 'nav-toggle)
 
-;; "Key Chords"
-(require 'key-chord)
-(key-chord-mode 1)
-(key-chord-define-global "uu" 'undo)
-(key-chord-define-global "ii" "\C-e\n\t")
-
-;; Ace Jump
+;; Ace Jump ; had to download it, may be put on elpa by maintainer
+(require 'ace-jump-mode)
 (autoload
   'ace-jump-mode
   "ace-jump-mode"
@@ -80,8 +82,10 @@
 (eval-after-load "ace-jump-mode"
   '(ace-jump-mode-enable-mark-sync))
 (define-key global-map (kbd "C-c jb") 'ace-jump-mode-pop-mark)
+(key-chord-define-global "jb" 'ace-jump-mode-pop-mark)
 
 ;; helm
+(require 'helm)
 (require 'helm-config)
 ;;(global-set-key (kbd "C-c h") 'helm-mini)
 (global-set-key (kbd "C-c hb") 'helm-buffers-list)
@@ -96,6 +100,7 @@
 
 ;; Projectile
 (require 'projectile)
+(require 'helm-projectile)
 (projectile-global-mode)
 (global-set-key (kbd "C-c hh") 'helm-projectile) ;; steals it from helm-mini
 (key-chord-define-global "hh" 'helm-projectile)
