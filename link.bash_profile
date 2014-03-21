@@ -46,7 +46,8 @@ alias mv='mv -i'
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC -I rc'
 
 alias e='emacsclient -t'
-alias ls='gls --color' # Fix termcap to include TMUX and remove --color
+#alias ls='gls --color' # Fix termcap to include TMUX and remove --color
+alias ls='ls --color' # Fix termcap to include TMUX and remove --color
 
 function xtitle()      # Adds some text in the terminal frame.
 {
@@ -105,6 +106,7 @@ completion
 proml
 
 [[ -s "/Users/mvazquez/.rvm/scripts/rvm" ]] && source "/Users/mvazquez/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[[ -s "/home/mvazquez/.rvm/scripts/rvm" ]] && source "/home/mvazquez/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 function err_handle {
     say Damn! & disown
