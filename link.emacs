@@ -221,6 +221,20 @@
   (command-execute previous-mutiframe-window)
   (command-execute crosshairs-flash))
 
+
+(eval-after-load "rspec-mode"
+  '(defun rspec-project-root (&optional directory)
+     "Finds the root directory of the project by walking the directory tree until it finds a rake file."
+     (let ((directory (file-name-as-directory (or directory default-directory))))
+       (cond ((rspec-root-directory-p directory)
+              (error "Could not determine the project root."))
+             ((file-exists-p (expand-file-name ".rspec_mode_ignore" directory))
+              (rspec-project-root (file-name-directory (directory-file-name directory))))
+             ((file-exists-p (expand-file-name "Rakefile" directory)) directory)
+             ((file-exists-p (expand-file-name "Gemfile" directory)) directory)
+             (t (rspec-project-root (file-name-directory (directory-file-name directory))))))))
+
+
 ;;;;;;;;;;;;;;;;
 ;; My own loaders
 (add-hook 'ruby-mode-hook (lambda () (linum-mode 1)))
