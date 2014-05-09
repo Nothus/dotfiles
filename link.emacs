@@ -12,6 +12,10 @@
 
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
+;; HiWin ;; too slow
+;; (require 'hiwin)
+;; (hiwin-mode 1)
+
 ;; "Key Chords"
 (require 'key-chord)
 (key-chord-mode 1)
@@ -171,6 +175,9 @@
 
 ;; Rinari Mode (Rails)
 ;;(require 'rinari)
+
+;; HAML Mode
+(require 'haml-mode)
 
 ;; rvm
 (require 'rvm)

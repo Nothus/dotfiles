@@ -1,6 +1,7 @@
 # Paths for homebrew
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
+export PATH=$PATH:$HOME/bin
 
 # Color ls
 export CLICOLOR=1
@@ -12,7 +13,7 @@ export GREP_OPTIONS='--color=always'
 export LESS='-R'
 
 # Set the default editor to vim.
-export EDITOR="emacsclient -t"
+export EDITOR="emacs"
  
 # Avoid succesive duplicates in the bash command history AND anything that begins with a space.
 export HISTCONTROL=ignoreboth
@@ -47,7 +48,7 @@ alias vlc='/Applications/VLC.app/Contents/MacOS/VLC -I rc'
 
 alias e='emacsclient -t'
 #alias ls='gls --color' # Fix termcap to include TMUX and remove --color
-alias ls='ls --color' # Fix termcap to include TMUX and remove --color
+#alias ls='ls --color' # Fix termcap to include TMUX and remove --color
 
 function xtitle()      # Adds some text in the terminal frame.
 {
