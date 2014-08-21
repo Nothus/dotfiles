@@ -192,11 +192,8 @@
 (require 'flymake-ruby)
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
 
+;; RSpec
 (require 'rspec-mode)
-;;(require 'ruby-test-mode)
-;;(global-set-key "\C-ctf" 'ruby-test-run)
-;;(global-set-key "\C-cts" 'ruby-test-run-at-point)
-;;(global-set-key "\C-ctt" 'ruby-test-toggle-implementation-and-specification)
 
 ;; Evernote
 ;; (require 'evernote-mode)
