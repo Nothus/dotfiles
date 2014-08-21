@@ -8,4 +8,5 @@ elpa
 swank
 emms
 *.elc
-
+projectile-bookmarks.eld
+url/cookies

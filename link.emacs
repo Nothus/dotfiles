@@ -21,6 +21,7 @@
 (key-chord-mode 1)
 (key-chord-define-global "uu" 'undo)
 (key-chord-define-global "ii" "\C-e\n\t")
+(key-chord-define-global "''" 'key-chord-mode)
 
 ;; winner mode, layout history
 (when (fboundp 'winner-mode)
@@ -71,10 +72,10 @@
   t)
 ;;(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 (define-key global-map (kbd "C-c jj") 'ace-jump-word-mode)
-(define-key global-map (kbd "C-c jk") 'ace-jump-char-mode)
-(define-key global-map (kbd "C-c jl") 'ace-jump-line-mode)
 (key-chord-define-global "jj" 'ace-jump-word-mode)
+(define-key global-map (kbd "C-c jk") 'ace-jump-char-mode)
 (key-chord-define-global "jk" 'ace-jump-char-mode)
+(define-key global-map (kbd "C-c jl") 'ace-jump-line-mode)
 (key-chord-define-global "jl" 'ace-jump-line-mode)
 (setq ace-jump-mode-scope 'global)
 
@@ -91,12 +92,13 @@
 ;; helm
 (require 'helm)
 (require 'helm-config)
+(global-set-key (kbd "M-x") 'helm-M-x)
 ;;(global-set-key (kbd "C-c h") 'helm-mini)
 (global-set-key (kbd "C-c hb") 'helm-buffers-list)
 (key-chord-define-global "hb" 'helm-buffers-list)
 (global-set-key (kbd "C-c ho") 'helm-occur)
-;(key-chord-define-global "ho" 'helm-occur) ; common key combo
-(global-set-key (kbd "C-c hm") 'helm-mini)
+;(key-chord-define-global "ho" 'helm-occur) ;; common key combo
+(global-set-key (kbd "C-c hm") 'helm-mini) ;; use helm-projectile instead
 (global-set-key (kbd "C-c hc") 'helm-etags-select)
 (global-set-key (kbd "M-.") 'helm-etags-select)
 (helm-mode 1)
@@ -108,8 +110,9 @@
 (projectile-global-mode)
 (global-set-key (kbd "C-c hh") 'helm-projectile) ;; steals it from helm-mini
 (key-chord-define-global "hh" 'helm-projectile)
+(key-chord-define-global "hj" 'helm-resume)
 (global-set-key (kbd "C-c pm") 'projectile-multi-occur)
-(key-chord-define-global "pm" 'projectile-multi-occur)
+;;(key-chord-define-global "pm" 'projectile-multi-occur)
 ;;(global-set-key (kbd "C-c pg") 'projectile-grep)
 
 ;; Nav

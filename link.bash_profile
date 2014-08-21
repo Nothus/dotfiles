@@ -55,56 +55,9 @@ function xtitle()      # Adds some text in the terminal frame.
     echo -n -e "\033]0;$*\007" 
 }
 
-function proml {
-    local red='\e[0;31m'
-    local RED='\e[1;31m'
-    local green='\e[0;32m'
-    local GREEN='\e[1;32m'
-    local blue='\e[0;34m'
-    local BLUE='\e[1;34m'
-    local cyan='\e[0;36m'
-    local CYAN='\e[1;36m'
-    local NC='\e[0m'              # No Color
-    case $TERM in
-	xterm*|rxvt*)
-            TITLEBAR='\[\e]0;\u:\w\007\]'
-            ;;
-	*)
-            TITLEBAR=""
-            ;;
-    esac
 
-    function parse_git_dirty {
-	git diff --quiet HEAD &>/dev/null
-	[[ $? == 1 ]] && echo "*"
-    }
-    function parse_git_branch {
-	local branch=$(__git_ps1 "%s")
-	[[ $branch ]] && echo "[$branch$(parse_git_dirty)]"
-    }
-    export PS1="${green}\u@\h:\w \$(parse_git_branch)>${NC}\n\$ "
-   #export PS1="\`if [ \$? = 0 ]; then echo \[\e[33m\]^_^\[\e[0m\]; else echo \[\e[31m\]X_X\[\e[0m\]; fi\` ${TITLEBAR}${NO_COLOUR}${GREY}[${MILD_BLUE}\$(date +%H:%M)${GREY}][${MILD_BLUE}\u${WHITE}:${MILD_BLUE}\w${GREY}]${ORANGE}\$(parse_git_branch)${NO_COLOUR}\$ "
-   #export PS1=${TITLEBAR}${NO_COLOUR}${GREY}'['${MILD_BLUE}'$(date +%H:%M)'${GREY}']['${MILD_BLUE}'\u'${WHITE}':'${MILD_BLUE}'\w'${GREY}']'${GREEN}'$(parse_git_branch)'${NO_COLOUR}
-    export PS2='> '
-    export PS4='+ '
-}
-
-function completion {
-    if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
-	. /usr/local/etc/bash_completion.d/git-completion.bash
-    fi
-    
-    if [ -f ~/.gitcomplete ]; then
-	. ~/.gitcomplete
-    fi
-
-    if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
-	. /usr/local/etc/bash_completion.d/git-prompt.sh
-    fi
-}
-
-completion
-proml
+#completion
+#proml
 
 [[ -s "/Users/mvazquez/.rvm/scripts/rvm" ]] && source "/Users/mvazquez/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 [[ -s "/home/mvazquez/.rvm/scripts/rvm" ]] && source "/home/mvazquez/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
@@ -117,3 +70,5 @@ function err_handle {
 # For lynx
 export LYNX_CFG=~/.lynxrc
 export WWW_HOME=http://google.com/
+
+[[ -s "/Users/mvazquez/.bashrc" ]] && source "/Users/mvazquez/.bashrc"
