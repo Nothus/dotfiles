@@ -12,6 +12,13 @@
 
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
+;; Auto Revert Buffers
+(global-auto-revert-mode 1)
+
+;; Splitting Windows (display-buffer)
+(setq split-height-threshold 1000)
+(setq split-width-threshold 300)
+
 ;; HiWin ;; too slow
 ;; (require 'hiwin)
 ;; (hiwin-mode 1)
@@ -22,6 +29,19 @@
 (key-chord-define-global "uu" 'undo)
 (key-chord-define-global "ii" "\C-e\n\t")
 (key-chord-define-global "''" 'key-chord-mode)
+(key-chord-define-global "NN" 'next-buffer)
+(key-chord-define-global "PP" 'previous-buffer)
+
+;; Multi Term Mode
+;;(require 'multi-term) ;; Figure out better
+
+;; Whitespace
+(require 'whitespace)
+(setq whitespace-style '(face lines-tail))
+(setq whitespace-line-column 80)
+(setq-default show-trailing-whitespace t)
+(setq-default indicate-empty-lines t)
+(global-whitespace-mode t)
 
 ;; winner mode, layout history
 (when (fboundp 'winner-mode)
@@ -59,9 +79,9 @@
 (powerline-default-theme)
 
 ;; Nav (emacs-nav)
-(require 'nav)
-(define-key global-map (kbd "C-c nn") 'nav-toggle)
-(key-chord-define-global "nn" 'nav-toggle)
+;; (require 'nav)
+;; (define-key global-map (kbd "C-c nn") 'nav-toggle)
+;; (key-chord-define-global "nn" 'nav-toggle)
 
 ;; Ace Jump ; had to download it, may be put on elpa by maintainer
 (require 'ace-jump-mode)
@@ -89,34 +109,39 @@
 (define-key global-map (kbd "C-c jb") 'ace-jump-mode-pop-mark)
 (key-chord-define-global "jb" 'ace-jump-mode-pop-mark)
 
+;; emamux; TMUX for Emacs
+(require 'emamux)
+(define-key global-map (kbd "C-c ts") 'emamux:send-command)
+(define-key global-map (kbd "C-c tr") 'emamux:run-command)
+(define-key global-map (kbd "C-c ty") 'emamux:yank-from-buffers)
+(define-key global-map (kbd "C-c tw") 'emamux:copy-kill-ring)
+(define-key global-map (kbd "C-c tl") 'emamux:run-last-command)
+(define-key global-map (kbd "C-c tz") 'emamux:zoom-runner)
+(define-key global-map (kbd "C-c tj") 'emamux:inspect-runner)
+(define-key global-map (kbd "C-c tx") 'emamux:close-runner-pane)
+
 ;; helm
 (require 'helm)
 (require 'helm-config)
 (global-set-key (kbd "M-x") 'helm-M-x)
-;;(global-set-key (kbd "C-c h") 'helm-mini)
-(global-set-key (kbd "C-c hb") 'helm-buffers-list)
 (key-chord-define-global "hb" 'helm-buffers-list)
-(global-set-key (kbd "C-c ho") 'helm-occur)
-;(key-chord-define-global "ho" 'helm-occur) ;; common key combo
-(global-set-key (kbd "C-c hm") 'helm-mini) ;; use helm-projectile instead
-(global-set-key (kbd "C-c hc") 'helm-etags-select)
 (global-set-key (kbd "M-.") 'helm-etags-select)
 (helm-mode 1)
 (require 'helm-themes)
+;; helm-google
+(require 'helm-google)
+(key-chord-define-global "gf" 'helm-google)
 
 ;; Projectile
 (require 'projectile)
 (require 'helm-projectile)
 (projectile-global-mode)
-(global-set-key (kbd "C-c hh") 'helm-projectile) ;; steals it from helm-mini
+(setq projectile-completion-system 'helm)
 (key-chord-define-global "hh" 'helm-projectile)
 (key-chord-define-global "hj" 'helm-resume)
-(global-set-key (kbd "C-c pm") 'projectile-multi-occur)
-;;(key-chord-define-global "pm" 'projectile-multi-occur)
-;;(global-set-key (kbd "C-c pg") 'projectile-grep)
 
 ;; Nav
-(require 'nav)
+;; (require 'nav)
 ;;(nav-disable-overeager-window-splitting)
 
 ;; autopair
@@ -194,6 +219,8 @@
 
 ;; RSpec
 (require 'rspec-mode)
+(key-chord-define-global "TT" 'rspec-toggle-spec-and-target)
+
 
 ;; Evernote
 ;; (require 'evernote-mode)
@@ -267,6 +294,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ecb-options-version "2.40")
+ '(helm-google-search-function (quote helm-google-api-search))
  '(rspec-spec-command "rspec --colour -p")
  '(rspec-use-bundler-when-possible t)
  '(rspec-use-opts-file-when-available t)

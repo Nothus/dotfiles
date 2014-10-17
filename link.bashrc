@@ -47,5 +47,5 @@ function completion {
 completion
 proml
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-PATH=$PATH:$HOME/work/sync_spike/jmb/cplusplus/src
-eval `$HOME/work/sync_spike/sag/jmb/bin/jiff-env moves-data-intake`
+# PATH=$PATH:$HOME/work/sync_spike/jmb/cplusplus/src
+# eval `$HOME/work/sync_spike/sag/jmb/bin/jiff-env moves-data-intake`

@@ -12,9 +12,10 @@ export GREP_OPTIONS='--color=always'
 # Color less
 export LESS='-R'
 
-# Set the default editor to vim.
+# Set the default editor emacs.
 export EDITOR="emacs"
- 
+export ESHELL="/usr/local/bin/bash --login"
+
 # Avoid succesive duplicates in the bash command history AND anything that begins with a space.
 export HISTCONTROL=ignoreboth
 
