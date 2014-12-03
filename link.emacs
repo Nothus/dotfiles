@@ -11,6 +11,10 @@
 ;; custom
 
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(tool-bar-mode -1)
+
+;; Solarized theme color-theme-solarized
+;; (load-theme 'solarized-dark t)
 
 ;; Auto Revert Buffers
 (global-auto-revert-mode 1)
@@ -43,6 +47,20 @@
 (setq-default indicate-empty-lines t)
 (global-whitespace-mode t)
 
+(defun turn-off-show-trailing-whitespace()
+  "Turn off the highlighting of trailing whitespace in this buffer."
+  (interactive)
+  (setq show-trailing-whitespace nil))
+(add-hook 'term-mode-hook 'turn-off-show-trailing-whitespace)
+
+;; Line Numbers
+;;(global-linum-mode 1)
+;;(setq linum-format "%4d ")
+
+;; Git Gutter
+(global-git-gutter-mode 1)
+(git-gutter:linum-setup)
+
 ;; winner mode, layout history
 (when (fboundp 'winner-mode)
   (winner-mode 1))
@@ -51,8 +69,12 @@
 (require 'fixmee)
 (global-fixmee-mode 1)
 
-;; line numbers
-;;(setq linum-format "%4d ")
+;; Figlet
+(require 'figlet)
+(defconst figlet-font-dir "/usr/local/share/figlet")
+
+;; w3m
+(setq w3m-new-session-url "http://duckduckgo.com/")
 
 ;; auto-complete
 (require 'auto-complete)
@@ -140,6 +162,11 @@
 (key-chord-define-global "hh" 'helm-projectile)
 (key-chord-define-global "hj" 'helm-resume)
 
+;; DuckDuckGo TODO: Not everything there yet
+;; (require 'ddg)
+;; (define-key global-map (kbd "C-c d") 'ddg-search)
+
+
 ;; Nav
 ;; (require 'nav)
 ;;(nav-disable-overeager-window-splitting)
@@ -224,8 +251,7 @@
 
 ;; Evernote
 ;; (require 'evernote-mode)
-;; (setq evernote-username "magnusnothus") ; optional: you can use this username as default.
-;; (setq evernote-enml-formatter-command '("w3m" "-dump" "-I" "UTF8" "-O" "UTF8")) ; option
+;; (setq evernote-developer-token "S=s44:U=48c300:E=150777b8bbe:C=1491fca5c60:P=1cd:A=en-devtoken:V=2:H=5521414644eb0b5d9e9bf3318dac635b")
 
 
 ;; ruby-end
@@ -278,16 +304,11 @@
 (setq auto-mode-alist (cons '("Gemfile$" . ruby-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("Berksfile$" . ruby-mode) auto-mode-alist))
 
-;;;;;;;;;;;;;;;;
-;; compile
-;; (autoload 'mode-compile "mode-compile"
-;;   "Command to compile current buffer file dependently of the major mode" t)
-;; (global-set-key "\C-cc" 'mode-compile)
-;; (autoload 'mode-compile-kill "mode-compile"
-;;   "Command to kill a compilation launched by `mode-compile'" t)
-;; (global-set-key "\C-ck" 'mode-compile-kill)
 
 (setq-default indent-tabs-mode nil)
+
+;;;;;;;;;;;;;;;;
+;; Custom
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -305,6 +326,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(linum ((t (:inherit (shadow default) :background "color-234" :foreground "color-236"))))
- '(mode-line ((t (:background "color-202" :foreground "black" :box (:line-width -1 :style released-button)))))
- '(which-func ((t (:background "black" :foreground "red")))))
+ '(default ((t (:height 100)))))

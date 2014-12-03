@@ -1,3 +1,43 @@
+# History is appended
+shopt -s histappend
+
+# ctrl-d no longer exits
+set -o ignoreeof
+# don't overwrite files with >, use >|
+set -o noclobber
+# bail if you try to expand an unset variable
+#set -o nounset # doesn't work with tab completion
+
+#alias emacs="/usr/local/Cellar/emacs/23.4/Emacs.app/Contents/MacOS/Emacs -nw"
+#alias emacs="Emacs -nw"
+# Open OSX emacs
+#alias oemacs='open -a Emacs'
+# Find and grep that I always type
+alias gfind='find . -type f | xargs grep'
+# Simple . and .. aliases
+#alias .='pwd'
+#alias ..='cd ..'
+# Make rm more interactive
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+alias vlc='/Applications/VLC.app/Contents/MacOS/VLC -I rc'
+
+alias e='emacsclient -t'
+#alias ls='gls --color' # Fix termcap to include TMUX and remove --color
+#alias ls='ls --color' # Fix termcap to include TMUX and remove --color
+
+function xtitle()      # Adds some text in the terminal frame.
+{
+    echo -n -e "\033]0;$*\007" 
+}
+
+function err_handle {
+    say Damn! & disown
+}
+#trap 'err_handle' ERR
+
 function proml {
     local red='\e[0;31m'
     local RED='\e[1;31m'
@@ -34,7 +74,7 @@ function completion {
     if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
 	. /usr/local/etc/bash_completion.d/git-completion.bash
     fi
-    
+
     if [ -f ~/.gitcomplete ]; then
 	. ~/.gitcomplete
     fi
@@ -46,6 +86,6 @@ function completion {
 
 completion
 proml
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-# PATH=$PATH:$HOME/work/sync_spike/jmb/cplusplus/src
-# eval `$HOME/work/sync_spike/sag/jmb/bin/jiff-env moves-data-intake`
+
+[[ -s "/Users/mvazquez/.rvm/scripts/rvm" ]] && source "/Users/mvazquez/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[[ -s "/home/mvazquez/.rvm/scripts/rvm" ]] && source "/home/mvazquez/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
