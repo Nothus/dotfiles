@@ -8,20 +8,21 @@ export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export CLICOLOR=1
 
 # Color grep
-export GREP_OPTIONS='--color=always'
+#export GREP_OPTIONS='--color=always'
 
 # Color less
 export LESS='-R'
 
 # Set the default editor emacs.
 export EDITOR="emacs"
-export ESHELL="/usr/local/bin/bash --login"
+export ESHELL="/usr/local/bin/bash"
 
 # Avoid succesive duplicates in the bash command history AND anything that begins with a space.
 export HISTCONTROL=ignoreboth
 
 # Make keeping track of history more solid
-export PROMPT_COMMAND="history -a"
+export PROMPT_COMMAND="history -a; history -n"
+export HISTSIZE=10000
 export HISTFILESIZE=10000
 
 # For lynx

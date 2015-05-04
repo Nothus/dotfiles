@@ -10,11 +10,30 @@
 ;;;;;;;;;
 ;; custom
 
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(tool-bar-mode -1)
+(when (display-graphic-p)
+  )
 
-;; Solarized theme color-theme-solarized
-;; (load-theme 'solarized-dark t)
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+
+(when (display-graphic-p)
+  (scroll-bar-mode -1)
+  )
+(require 'jammer)
+(jammer-mode)
+
+;; Editorconfig
+(require 'editorconfig)
+(load "editorconfig")
+;;(setq js-indent-level 2)
+
+(when (display-graphic-p)
+  ;; Solarized theme color-theme-solarized
+  ;;(load-theme 'solarized-dark t)
+
+  ;;(load-theme 'wombat t)
+  (load-theme 'ample-zen t)
+  )
 
 ;; Auto Revert Buffers
 (global-auto-revert-mode 1)
@@ -53,21 +72,33 @@
   (setq show-trailing-whitespace nil))
 (add-hook 'term-mode-hook 'turn-off-show-trailing-whitespace)
 
+;; Sublime minimap
+(when (display-graphic-p)
+  (require 'minimap)
+  )
+
 ;; Line Numbers
-;;(global-linum-mode 1)
-;;(setq linum-format "%4d ")
+(when (display-graphic-p)
+  (require 'linum)
+  ;; (global-linum-mode 1)
+  ;; (setq linum-format "%4d ")
+  (add-hook 'prog-mode-hook #'linum-on)
+  )
 
 ;; Git Gutter
+(require 'git-gutter)
 (global-git-gutter-mode 1)
-(git-gutter:linum-setup)
+(when (display-graphic-p)
+  (git-gutter:linum-setup)
+  )
 
 ;; winner mode, layout history
 (when (fboundp 'winner-mode)
   (winner-mode 1))
 
 ;; fixmee FIXME and TODO highlighting and nav
-(require 'fixmee)
-(global-fixmee-mode 1)
+;; (require 'fixmee)
+;; (global-fixmee-mode 1)
 
 ;; Figlet
 (require 'figlet)
@@ -94,11 +125,11 @@
 ;; Crosshairs col-highlight/hl-line modes
 (require 'crosshairs)
 (global-set-key "\C-cc" 'flash-crosshairs)
-(key-chord-define-global "cc" 'flash-crosshairs)
+;; (key-chord-define-global "cc" 'flash-crosshairs)
 
 ;; Powerline
-(require 'powerline)
-(powerline-default-theme)
+;; (require 'powerline)
+;; (powerline-default-theme)
 
 ;; Nav (emacs-nav)
 ;; (require 'nav)
@@ -135,12 +166,18 @@
 (require 'emamux)
 (define-key global-map (kbd "C-c ts") 'emamux:send-command)
 (define-key global-map (kbd "C-c tr") 'emamux:run-command)
-(define-key global-map (kbd "C-c ty") 'emamux:yank-from-buffers)
+(define-key global-map (kbd "C-c ty") 'emamux:yank-from-list-buffers)
 (define-key global-map (kbd "C-c tw") 'emamux:copy-kill-ring)
 (define-key global-map (kbd "C-c tl") 'emamux:run-last-command)
 (define-key global-map (kbd "C-c tz") 'emamux:zoom-runner)
 (define-key global-map (kbd "C-c tj") 'emamux:inspect-runner)
 (define-key global-map (kbd "C-c tx") 'emamux:close-runner-pane)
+
+;; cycle-resize
+(require 'cycle-resize)
+(global-set-key (kbd "C-M-v") 'cycle-resize-window-vertically)
+(global-set-key (kbd "C-M-h") 'cycle-resize-window-horizontally)
+
 
 ;; helm
 (require 'helm)
@@ -157,6 +194,7 @@
 ;; Projectile
 (require 'projectile)
 (require 'helm-projectile)
+(helm-projectile-on)
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
 (key-chord-define-global "hh" 'helm-projectile)
@@ -165,7 +203,6 @@
 ;; DuckDuckGo TODO: Not everything there yet
 ;; (require 'ddg)
 ;; (define-key global-map (kbd "C-c d") 'ddg-search)
-
 
 ;; Nav
 ;; (require 'nav)
@@ -209,9 +246,10 @@
 
 ;; Magit
 (require 'magit)
+(setq magit-last-seen-setup-instructions "1.4.0")
 
 ;; Which Function mode
-(which-function-mode t)
+;; (which-function-mode t)
 
 ;; Ruby Mode
 (autoload 'ruby-mode "ruby-mode")
@@ -297,7 +335,7 @@
 
 ;;;;;;;;;;;;;;;;
 ;; My own loaders
-(add-hook 'ruby-mode-hook (lambda () (linum-mode 1)))
+;; (add-hook 'ruby-mode-hook (lambda () (linum-mode 1)))
 (add-hook 'ruby-mode-hook (lambda () (highlight-indentation-mode 1)))
 ;;(add-hook 'ruby-mode-hook (lambda () (flyspell-prog-mode 1)))
 
@@ -314,8 +352,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("1db337246ebc9c083be0d728f8d20913a0f46edc0a00277746ba411c149d7fe5" "968c8cf5763708bb86a3f82bb0f8b8d2fe885e693ac8644268738ac2584da292" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "603a9c7f3ca3253cb68584cb26c408afcf4e674d7db86badcfe649dd3c538656" default)))
  '(ecb-options-version "2.40")
  '(helm-google-search-function (quote helm-google-api-search))
+ '(magit-use-overlays nil)
  '(rspec-spec-command "rspec --colour -p")
  '(rspec-use-bundler-when-possible t)
  '(rspec-use-opts-file-when-available t)

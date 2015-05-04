@@ -11,7 +11,7 @@ set -o noclobber
 #alias emacs="/usr/local/Cellar/emacs/23.4/Emacs.app/Contents/MacOS/Emacs -nw"
 #alias emacs="Emacs -nw"
 # Open OSX emacs
-#alias oemacs='open -a Emacs'
+alias oemacs='open -a Emacs'
 # Find and grep that I always type
 alias gfind='find . -type f | xargs grep'
 # Simple . and .. aliases
@@ -21,6 +21,8 @@ alias gfind='find . -type f | xargs grep'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+
+alias grep='grep --color=always'
 
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC -I rc'
 
@@ -86,6 +88,9 @@ function completion {
 
 completion
 proml
+
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
 
 [[ -s "/Users/mvazquez/.rvm/scripts/rvm" ]] && source "/Users/mvazquez/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 [[ -s "/home/mvazquez/.rvm/scripts/rvm" ]] && source "/home/mvazquez/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
