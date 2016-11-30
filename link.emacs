@@ -15,10 +15,26 @@
 
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(osx-clipboard-mode +1)
+
+;; Use Emacs terminfo, not system terminfo
+;; (setq system-uses-terminfo nil)
+;; -OR- try:
+;; If you use Cocoa Emacs or Carbon Emacs
+;; $ tic -o ~/.terminfo /Applications/Emacs.app/Contents/Resources/etc/e/eterm-color.ti
 
 (when (display-graphic-p)
+  ;; No scroll bar
   (scroll-bar-mode -1)
+
+  ;; Set transparency
+  (set-frame-parameter (selected-frame) 'alpha '(85 50))
+  (add-to-list 'default-frame-alist '(alpha 85 50))
   )
+
+(require 'elscreen)
+(elscreen-start)
+
 (require 'jammer)
 (jammer-mode)
 
@@ -42,6 +58,9 @@
 (setq split-height-threshold 1000)
 (setq split-width-threshold 300)
 
+(require 'golden-ratio)
+(golden-ratio-mode 1)
+
 ;; HiWin ;; too slow
 ;; (require 'hiwin)
 ;; (hiwin-mode 1)
@@ -52,15 +71,16 @@
 (key-chord-define-global "uu" 'undo)
 (key-chord-define-global "ii" "\C-e\n\t")
 (key-chord-define-global "''" 'key-chord-mode)
-(key-chord-define-global "NN" 'next-buffer)
-(key-chord-define-global "PP" 'previous-buffer)
+;; (key-chord-define-global "NN" 'next-buffer)
+;; (key-chord-define-global "PP" 'previous-buffer)
+(key-chord-define-global "NN" 'elscreen-next)
+(key-chord-define-global "PP" 'elscreen-previous)
 
 ;; Multi Term Mode
 ;;(require 'multi-term) ;; Figure out better
 
 ;; Whitespace
 (require 'whitespace)
-(setq whitespace-style '(face lines-tail))
 (setq whitespace-line-column 80)
 (setq-default show-trailing-whitespace t)
 (setq-default indicate-empty-lines t)
@@ -164,14 +184,17 @@
 
 ;; emamux; TMUX for Emacs
 (require 'emamux)
-(define-key global-map (kbd "C-c ts") 'emamux:send-command)
-(define-key global-map (kbd "C-c tr") 'emamux:run-command)
-(define-key global-map (kbd "C-c ty") 'emamux:yank-from-list-buffers)
-(define-key global-map (kbd "C-c tw") 'emamux:copy-kill-ring)
-(define-key global-map (kbd "C-c tl") 'emamux:run-last-command)
-(define-key global-map (kbd "C-c tz") 'emamux:zoom-runner)
-(define-key global-map (kbd "C-c tj") 'emamux:inspect-runner)
-(define-key global-map (kbd "C-c tx") 'emamux:close-runner-pane)
+;; (define-key global-map (kbd "C-c ts") 'emamux:send-command)
+;; (define-key global-map (kbd "C-c tr") 'emamux:run-command)
+;; (define-key global-map (kbd "C-c ty") 'emamux:yank-from-list-buffers)
+;; (define-key global-map (kbd "C-c tw") 'emamux:copy-kill-ring)
+;; (define-key global-map (kbd "C-c tl") 'emamux:run-last-command)
+;; (define-key global-map (kbd "C-c tz") 'emamux:zoom-runner)
+;; (define-key global-map (kbd "C-c tj") 'emamux:inspect-runner)
+;; (define-key global-map (kbd "C-c tx") 'emamux:close-runner-pane)
+(define-key global-map (kbd "C-c tt") 'term)
+(define-key global-map (kbd "C-c tr") 'rename-uniquely)
+
 
 ;; cycle-resize
 (require 'cycle-resize)
@@ -182,14 +205,19 @@
 ;; helm
 (require 'helm)
 (require 'helm-config)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(key-chord-define-global "hb" 'helm-buffers-list)
-(global-set-key (kbd "M-.") 'helm-etags-select)
 (helm-mode 1)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(key-chord-define-global "hb" 'helm-mini)
+(global-set-key (kbd "M-.") 'helm-etags-select)
+(global-set-key (kbd "C-c s") 'helm-occur)
 (require 'helm-themes)
 ;; helm-google
 (require 'helm-google)
 (key-chord-define-global "gf" 'helm-google)
+(require 'helm-bundle-show)
+(require 'helm-pages)
+(require 'helm-ls-git)
+(require 'ac-helm)
 
 ;; Projectile
 (require 'projectile)
@@ -197,6 +225,8 @@
 (helm-projectile-on)
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
+(setq projectile-switch-project-action 'helm-projectile)
+;; (key-chord-define-global "hh" 'helm-browse-project)
 (key-chord-define-global "hh" 'helm-projectile)
 (key-chord-define-global "hj" 'helm-resume)
 
@@ -257,14 +287,22 @@
 (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
 
 ;; Inf Ruby
-;;(autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
-;;(autoload 'inf-ruby-setup-keybindings "inf-ruby" "" t)
-;;(eval-after-load 'ruby-mode
+;; (autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
+;; (autoload 'inf-ruby-setup-keybindings "inf-ruby" "" t)
+;; (eval-after-load 'ruby-mode
 ;;  '(add-hook 'ruby-mode-hook 'inf-ruby-setup-keybindings))
+(autoload 'inf-ruby-minor-mode "inf-ruby" "Run an inferior Ruby process" t)
+(add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
+(require 'ac-inf-ruby)
+(eval-after-load 'auto-complete
+  '(add-to-list 'ac-modes 'inf-ruby-mode))
+(add-hook 'inf-ruby-mode-hook 'ac-inf-ruby-enable)
 
 ;; Robe
-;;(require 'robe)
-;;(add-hook 'ruby-mode-hook 'robe-mode)
+(require 'robe)
+(add-hook 'ruby-mode-hook 'robe-mode)
+(defadvice inf-ruby-console-auto (before activate-rvm-for-robe activate)
+  (rvm-activate-corresponding-ruby))
 
 ;; Rinari Mode (Rails)
 ;;(require 'rinari)
@@ -286,14 +324,10 @@
 (require 'rspec-mode)
 (key-chord-define-global "TT" 'rspec-toggle-spec-and-target)
 
-
 ;; Evernote
 ;; (require 'evernote-mode)
 ;; (setq evernote-developer-token "S=s44:U=48c300:E=150777b8bbe:C=1491fca5c60:P=1cd:A=en-devtoken:V=2:H=5521414644eb0b5d9e9bf3318dac635b")
 
-
-;; ruby-end
-(require 'ruby-end)
 
 ;; ruby-block
 (require 'ruby-block)
@@ -332,6 +366,17 @@
              ((file-exists-p (expand-file-name "Gemfile" directory)) directory)
              (t (rspec-project-root (file-name-directory (directory-file-name directory))))))))
 
+(setq rcirc-server-alist
+      '(("gekkoscience.com" :port 9001 :encryption tls)))
+(setq rcirc-default-nick "nothus")
+(setq rcirc-authinfo
+      '(("gekkoscience.com" chanelserv "nothus" "#staff" "testpass")))
+
+(require 'diminish)
+;; (diminish 'abbrev-mode "Abv")
+;; (diminish 'jiggle-mode)
+;; (diminish 'mouse-avoidance-mode "M")
+
 
 ;;;;;;;;;;;;;;;;
 ;; My own loaders
@@ -352,17 +397,55 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(compilation-always-kill t)
+ '(compilation-auto-jump-to-first-error nil)
  '(custom-safe-themes
    (quote
     ("1db337246ebc9c083be0d728f8d20913a0f46edc0a00277746ba411c149d7fe5" "968c8cf5763708bb86a3f82bb0f8b8d2fe885e693ac8644268738ac2584da292" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "603a9c7f3ca3253cb68584cb26c408afcf4e674d7db86badcfe649dd3c538656" default)))
  '(ecb-options-version "2.40")
+ '(helm-M-x-always-save-history t)
+ '(helm-buffer-max-length 40)
+ '(helm-buffers-favorite-modes
+   (quote
+    (lisp-interaction-mode emacs-lisp-mode text-mode org-mode ruby-mode)))
+ '(helm-buffers-truncate-lines nil)
+ '(helm-completing-read-handlers-alist
+   (quote
+    ((describe-function . helm-completing-read-symbols)
+     (describe-variable . helm-completing-read-symbols)
+     (describe-symbol . helm-completing-read-symbols)
+     (debug-on-entry . helm-completing-read-symbols)
+     (find-function . helm-completing-read-symbols)
+     (disassemble . helm-completing-read-symbols)
+     (trace-function . helm-completing-read-symbols)
+     (trace-function-foreground . helm-completing-read-symbols)
+     (trace-function-background . helm-completing-read-symbols)
+     (find-tag . helm-completing-read-with-cands-in-buffer)
+     (org-capture . helm-org-completing-read-tags)
+     (org-set-tags . helm-org-completing-read-tags)
+     (ffap-alternate-file)
+     (tmm-menubar)
+     (find-file . helm-completing-read-symbols)
+     (execute-extended-command . helm-completing-read-symbols))))
+ '(helm-ff-skip-boring-files t)
  '(helm-google-search-function (quote helm-google-api-search))
- '(magit-use-overlays nil)
- '(rspec-spec-command "rspec --colour -p")
- '(rspec-use-bundler-when-possible t)
- '(rspec-use-opts-file-when-available t)
+ '(helm-ls-git-show-abs-or-relative (quote relative))
+ '(helm-mode t)
+ '(helm-split-window-default-side (quote right))
+ '(package-selected-packages
+   (quote
+    (ac-helm ac-inf-ruby helm-bundle-show helm-pages helm-ls-git diminish helm-robe mactag robe w3m tao-theme symon solarized-theme rvm ruby-block rspec-mode restclient powerline osx-clipboard minimap magit key-chord jasminejs-mode jammer ibuffer-projectile highlight-indentation helm-themes helm-projectile helm-google helm-ag haml-mode golden-ratio git-gutter flymake-ruby fixmee figlet f escreen emamux elscreen editorconfig cycle-resize crosshairs ample-zen-theme ahungry-theme ag ace-jump-mode ac-slime)))
+ '(projectile-buffers-filter-function (quote projectile-buffers-with-file-or-process))
+ '(projectile-sort-order (quote recently-active))
+ '(rspec-command-options " 2>/dev/null")
+ '(rspec-compilation-skip-threshold 2)
+ '(rspec-spec-command "RUBYOPT=\"-W0\" rspec")
+ '(rspec-use-bundler-when-possible nil)
+ '(rspec-use-opts-file-when-available nil)
  '(rspec-use-rake-when-possible nil)
- '(rspec-use-rvm nil))
+ '(rspec-use-rvm t)
+ '(rspec-use-spring-when-possible nil)
+ '(whitespace-style (quote (face))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
