@@ -2,9 +2,36 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("Some Crazy Config!"
- (filename . "~/work/playbook/lib/playbook/config.rb")
- (front-context-string . "JiffCore.config.")
- (rear-context-string . " {\n    default: ")
- (position . 67))
+(#1=(#("Gemfile" 0 7
+      (bmkp-full-record #1#))
+    (filename . "~/funspace/Jiff3/Gemfile")
+    (buffer-name . "Gemfile")
+    (front-context-string . "JIFF_BUNDLE_BRAN")
+    (rear-context-string . "he middleware.\n\n")
+    (front-context-region-string)
+    (rear-context-region-string)
+    (visits . 1)
+    (time 22601 13489 778023 0)
+    (created 22601 13473 987385 0)
+    (position . 268))
+#1=(#("challenge_spec.rb" 0 17
+      (bmkp-full-record #1#))
+    (annotation)
+    (tags)
+    (filename . "~/funspace/rocky/spec/models/challenge_spec.rb")
+    (buffer-name . "challenge_spec.rb")
+    (front-context-string . "describe '#days_")
+    (rear-context-string . "   end\n  end\n\n  ")
+    (front-context-region-string)
+    (rear-context-region-string)
+    (visits . 1)
+    (time 22595 25925 193701 0)
+    (created 22594 58227 32846 0)
+    (position . 6334))
+#1=(#("Some Crazy Config!" 0 18
+      (bmkp-full-record #1#))
+    (filename . "~/work/playbook/lib/playbook/config.rb")
+    (front-context-string . "JiffCore.config.")
+    (rear-context-string . " {\n    default: ")
+    (position . 67))
 )
