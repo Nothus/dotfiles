@@ -39,11 +39,14 @@ set -o noclobber
 # bail if you try to expand an unset variable
 #set -o nounset # doesn't work with tab completion
 
-#alias emacs="/usr/local/Cellar/emacs/23.4/Emacs.app/Contents/MacOS/Emacs -nw"
+alias ec='emacsclient -t'
+alias e='emacs -nw'
 alias emacs='emacs -nw'
 alias nEmacs='open -n -a Emacs.app'
 # Open OSX emacs
 alias oEmacs='open -a Emacs.app'
+
+
 # Find and grep that I always type
 alias gfind='find . -type f | xargs grep'
 # Simple . and .. aliases
@@ -58,7 +61,6 @@ alias grep='grep --color=always'
 
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC -I rc'
 
-alias e='emacsclient -t'
 #alias ls='gls --color' # Fix termcap to include TMUX and remove --color
 #alias ls='ls --color' # Fix termcap to include TMUX and remove --color
 
