@@ -1,4 +1,3 @@
-tap 'atlassian/tap'
 tap 'caskroom/cask'
 tap 'homebrew/bundle'
 tap 'homebrew/core'
