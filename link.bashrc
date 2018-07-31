@@ -121,7 +121,7 @@ function completion {
 }
 
 completion
-proml
+#proml
 
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
