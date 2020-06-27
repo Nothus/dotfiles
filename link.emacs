@@ -1,3 +1,7 @@
+(add-to-list 'load-path "~/.emacs.d/packages/") ; downloaded packages
+(require 'cask "/usr/local/share/emacs/site-lisp/cask/cask.el")
+(cask-initialize)
+
 (if (not (getenv "TERM_PROGRAM"))
       (let ((path (shell-command-to-string
               "$SHELL -cl \"printf %s \\\"\\\$PATH\\\"\"")))
@@ -10,7 +14,7 @@
   (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
   )
-(add-to-list 'load-path "~/.emacs.d/packages/") ; downloaded packages
+;; (add-to-list 'load-path "~/.emacs.d/packages/") ; downloaded packages
 
 ;;;;;;;;;
 ;; custom
@@ -74,7 +78,7 @@
 ;; (require 'hiwin)
 ;; (hiwin-mode 1)
 
-(require 'bookmark+)
+;; (require 'bookmark+)
 
 ;; "Key Chords"
 (require 'key-chord)
@@ -117,8 +121,8 @@
   )
 
 ;; Git Gutter
-;; (require 'git-gutter)
-(require 'git-gutter-fringe)
+(require 'git-gutter)
+;;(require 'git-gutter-fringe)
 (global-git-gutter-mode t)
 (when (display-graphic-p)
   ;; (git-gutter:linum-setup)
